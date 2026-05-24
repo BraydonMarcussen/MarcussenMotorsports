@@ -608,6 +608,8 @@ p {
   padding: 28px clamp(22px, 5vw, 72px);
   border-top: 1px solid var(--line);
   color: var(--muted);
+  font-family: var(--font-brand);
+  font-weight: 850;
   font-size: 0.82rem;
 }
 
