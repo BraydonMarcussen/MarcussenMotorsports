@@ -2,6 +2,7 @@ const header = document.querySelector('[data-header]');
 const navToggle = document.querySelector('[data-nav-toggle]');
 const navMenu = document.querySelector('[data-nav]');
 const navLinks = document.querySelectorAll('[data-nav] a');
+const fitTitle = document.querySelector('[data-fit-title]');
 const scrollVideo = document.querySelector('[data-scroll-video]');
 const scrollCanvas = document.querySelector('[data-scroll-frames]');
 const scrollVideoWrap = scrollVideo?.closest('.scroll-video-backdrop');
@@ -21,6 +22,24 @@ const closeMenu = () => {
 
 const updateHeader = () => {
   header?.classList.toggle('scrolled', window.scrollY > 24);
+};
+
+const fitHeroTitle = () => {
+  if (!fitTitle) return;
+
+  fitTitle.style.fontSize = '';
+
+  if (window.innerWidth <= 490) return;
+
+  const parentWidth = fitTitle.parentElement?.clientWidth || window.innerWidth;
+  const availableWidth = Math.max(120, parentWidth - 8);
+  const currentSize = Number.parseFloat(window.getComputedStyle(fitTitle).fontSize);
+
+  if (!currentSize || fitTitle.scrollWidth <= availableWidth) return;
+
+  const scale = availableWidth / fitTitle.scrollWidth;
+  const nextSize = Math.max(18, Math.floor(currentSize * scale));
+  fitTitle.style.fontSize = `${nextSize}px`;
 };
 
 const updateScrollVideo = () => {
@@ -72,6 +91,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 window.addEventListener('resize', () => {
   if (window.innerWidth > 900) closeMenu();
+  fitHeroTitle();
   resizeScrollCanvas();
   requestScrollVideoUpdate();
 });
@@ -197,3 +217,9 @@ if (scrollVideo) {
 
 loadScrollFrames();
 updateHeader();
+fitHeroTitle();
+requestAnimationFrame(fitHeroTitle);
+
+if (document.fonts?.ready) {
+  document.fonts.ready.then(fitHeroTitle);
+}
