@@ -1,25 +1,13 @@
-# Marcussen Motorsports
+# Marcussen Motorsports — Metrik
 
-Static GitHub Pages landing page for an autocross father-son team, social links, and Etsy race-part listings.
+The public Metrik product website at https://marcussenmotorsports.com/.
 
-## Files
+## Publishing
 
-- `index.html` - page content and placeholder links
-- `styles.css` - responsive visual design
-- `script.js` - mobile menu and sticky header behavior
-- `assets/IMG_1940.png` - hero image and social preview image
-- `assets/marcussen-logo-white.png` - header logo
-- Optional: `assets/scroll-background.mov` - scroll-scrubbed page background video
-- Optional: `assets/scroll-background.mp4` - preferred browser-friendly version if you export one
+GitHub Pages publishes the root of `main`. This repository contains the generated static release; no server process or build on GitHub is required. `CNAME` preserves the custom domain, and `.nojekyll` lets Pages serve the `_next` assets unchanged.
 
-## Customize Before Launch
+The September 8, 2026 release includes the completed gauge animation, phone layout refinements, app previews, and privacy, terms, and refund pages. Support launch remains inactive until the campaign URL is supplied; direct checkout is not enabled.
 
-1. Replace each product Etsy URL in `index.html` with the real product listing links.
-2. Replace the email placeholder.
-3. The licensed Stereo Gothic font files live in `assets/fonts`.
-3. Update the product names and descriptions as your actual parts list changes.
-4. Replace `assets/scroll-background.mov` to change the background video that advances as you scroll. For best browser support, export an H.264 MP4 as `assets/scroll-background.mp4`.
+The website source project generates this release with `node scripts/build.mjs`, then `node scripts/prepare-github-pages.mjs <empty-output-directory>`. That packaging step includes the active render assets and adds directory index files for the policy routes. Keep the source project separately; do not hand-edit generated bundles.
 
-## GitHub Pages
-
-Push this folder to a GitHub repository, then enable Pages from the repository settings using the root folder of the main branch.
+The previous racing-team site is preserved in Git history at `7215189f6f2b721584268ce377f17a77948365fc`. Its original images, videos, styles, and scripts are retained in this repository.
