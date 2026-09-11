@@ -10,4 +10,6 @@ The September 10, 2026 update uses the supplied Marcussen Motorsports M/checkere
 
 The website source project generates this release with `node scripts/build.mjs`, then `node scripts/prepare-github-pages.mjs <empty-output-directory>`. That packaging step includes the active render assets and adds directory index files for the policy routes. Keep the source project separately; do not hand-edit generated bundles.
 
+Desktop animation now has a 1.5GB budget for its estimated working set:76 decoded full-resolution frames, up to2 in-flight decodes, the96MiB compressed cache and128MiB rendering reserve. It looks up to60 source frames ahead and14 behind, with4 background downloads plus4 foreground slots. This is an animation budget, not a cap on browser-wide or GPU memory. Phones and touch-only tablets retain the smaller12-frame cache. The loader also retains a usable late frame without repeatedly decoding and evicting it. Image resolution and scroll timing are unchanged.
+
 The previous racing-team site is preserved in Git history at `7215189f6f2b721584268ce377f17a77948365fc`. Its original images, videos, styles, and scripts are retained in this repository.
